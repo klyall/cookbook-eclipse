@@ -1,0 +1,26 @@
+---     
+driver_plugin: vagrant
+platforms:
+- name: centos-6.3
+  driver_config:
+    box: opscode-centos-6.3
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-6.3.box
+  run_list: []
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box
+  run_list: []
+  attributes:
+    java:
+      jdk_version: '6'
+      install_flavor: 'oracle'
+      jdk:
+        '6':
+          x86_64:
+            url: 'http://10.99.89.15/jdk-6u41-linux-x64.bin'
+suites:
+- name: default
+  run_list:
+  - recipe[minitest-handler]
+  - recipe[eclipse]
